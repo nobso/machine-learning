@@ -106,6 +106,17 @@ J = regularizedJ;
 
 % -------------------------------------------------------------
 
+% backpropagation without regularization
+sigma3 = a3 .- Y;
+sigma2 = ( sigma3 * Theta2 ) .* sigmoidGradient([ ones(size(z2, 1), 1) z2 ]);
+sigma2 = sigma2(:, 2:end);
+
+delta1 = sigma2' * a1;
+delta2 = sigma3' * a2;
+
+Theta1_grad = delta1 / m;
+Theta2_grad = delta2 / m;
+
 % =========================================================================
 
 % Unroll gradients
