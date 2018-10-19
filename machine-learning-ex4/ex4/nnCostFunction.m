@@ -62,7 +62,7 @@ Theta2_grad = zeros(size(Theta2));
 
 % one-hot encoding to make the vector into the matrix
 I = eye(num_labels);
-Y = zeros(m, num_labels);
+Y = zeros(size(y, 1), num_labels);
 for i=1:m
   Y(i, :)= I(y(i), :);
 end
@@ -116,6 +116,13 @@ delta2 = sigma3' * a2;
 
 Theta1_grad = delta1 / m;
 Theta2_grad = delta2 / m;
+
+% backprop with regularization
+p1 = lambda / m * ([zeros(size(Theta1, 1), 1) Theta1(:, 2:end)]);
+Theta1_grad = Theta1_grad + p1;
+
+p2 = lambda / m * ([zeros(size(Theta2, 1), 1) Theta2(:, 2:end)]);
+Theta2_grad = Theta2_grad + p2;
 
 % =========================================================================
 
