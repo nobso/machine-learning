@@ -20,18 +20,14 @@ grad = zeros(size(theta));
 %
 
 
-J = (1 / (2 * m)) * sum( ((X * theta) .- y) .^ 2 );
-p = (lambda / (2 * m)) * sum( theta(2:end) .^ 2)
+h = X * theta;
+trainCost = (1 / (2 * m)) * sum( (h .- y) .^ 2 );
+regularizedCost = (lambda / (2 * m)) * sum( theta(2:end) .^ 2);
+J = trainCost + regularizedCost;
 
-J = J + p;
-
-
-
-
-
-
-
-
+unregularizedGrad = (1 / m) * X' * (h - y);
+regularizedGrad = (lambda / m  .* [0; theta(2:end, :)]);
+grad = unregularizedGrad + regularizedGrad;
 
 % =========================================================================
 
