@@ -53,6 +53,7 @@ fprintf('\n==== Processed Email ====\n\n');
 
 % Process file
 l = 0;
+vocabularyLength = length(vocabList);
 
 while ~isempty(email_contents)
 
@@ -98,9 +99,11 @@ while ~isempty(email_contents)
     %
 
 
-
-
-
+    for i=1:vocabularyLength
+        if (strcmp(str, vocabList{i}))
+            word_indices = [ word_indices, i];
+        end
+    end
 
 
 
