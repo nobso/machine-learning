@@ -26,12 +26,12 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
-
-
-
-
+% cluster movement step of the K-means algorithm
+for j=1:K
+    % find(idx == j); // finding all the indices that belong to a particular cluster like 1 , 2 ... K
+    % X(find(idx == j), :) // get all the data points that belong to particular cluster like 1, 2 .. K
+    centroids(j, :) = mean(X(find(idx == j), :));
+end
 
 % =============================================================
 
