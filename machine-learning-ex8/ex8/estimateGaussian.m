@@ -21,11 +21,13 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
+% n-dimension vector mu that holds the mean of all the n features
+% transpose the mean to make sure mu(i) is the data for i-th feature
+mu = mean(X)';
 
-
-
-
-
+% n-dimension vector sigma2 that holds the variances of all the features
+% sigma2 = (std(X) .^ 2)'; (OR)
+sigma2 = ((1 / m) * sum((X - mu') .^ 2))';
 
 
 
