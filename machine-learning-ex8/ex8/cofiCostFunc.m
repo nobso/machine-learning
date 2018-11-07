@@ -40,17 +40,22 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
-% cost function
+% cost function without regularization
 h = X * Theta';
 error = h - Y;
 sqerror = error .^ 2;
 J = (1 / 2) * sum( sqerror( R == 1));
 
-% gradient
+% gradient without regularization
 X_grad = (error .* R) * Theta;
 Theta_grad = (error .* R)' * X;
 
 
+% cost function with regularization
+regularizedTheta = (lambda / 2 ) * sum(sum(Theta .^ 2));
+regularizedX = (lambda / 2 ) * sum(sum(X .^ 2));
+
+J = J + regularizedTheta + regularizedX;
 
 % =============================================================
 
