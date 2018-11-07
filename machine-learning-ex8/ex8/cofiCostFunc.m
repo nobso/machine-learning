@@ -57,6 +57,10 @@ regularizedX = (lambda / 2 ) * sum(sum(X .^ 2));
 
 J = J + regularizedTheta + regularizedX;
 
+% gradient with regularization
+X_grad = X_grad + (lambda * X);
+Theta_grad = Theta_grad + (lambda * Theta);
+
 % =============================================================
 
 grad = [X_grad(:); Theta_grad(:)];
